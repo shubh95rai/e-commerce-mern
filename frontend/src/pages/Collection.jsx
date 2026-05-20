@@ -33,8 +33,8 @@ const Collection = () => {
   };
 
   const applyFilter = () => {
-    let productsCopy = [...products];
-    
+    let productsCopy = products.slice();
+
     if (showSearch && search) {
       productsCopy = productsCopy.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase()),
@@ -57,7 +57,7 @@ const Collection = () => {
   };
 
   const sortProducts = () => {
-    let fpCopy = [...filteredProducts];
+    let fpCopy = filteredProducts.slice();
 
     switch (sortBy) {
       case "low-high":
@@ -197,7 +197,7 @@ const Collection = () => {
               <ProductItem
                 key={index}
                 name={item.name}
-                id={item.id}
+                id={item._id}
                 price={item.price}
                 image={item.image}
               />
