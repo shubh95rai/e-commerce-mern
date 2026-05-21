@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch, getCartCount } = useContext(ShopContext);
   const [visible, setVisible] = useState(false);
 
   return (
@@ -65,7 +65,7 @@ const Navbar = () => {
             className="w-5 min-w-5 cursor-pointer"
           />
           <p className="absolute -right-1.25 -bottom-1.25 w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
-            10
+            {getCartCount()}
           </p>
         </Link>
 
