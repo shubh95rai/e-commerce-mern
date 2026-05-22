@@ -16,7 +16,7 @@ import { ToastContainer } from "react-toastify";
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-      <ToastContainer />
+      <ToastContainer autoClose={2000} position="bottom-right" />
       <Navbar />
       <SearchBar />
       <Routes>
