@@ -17,7 +17,6 @@ const Product = () => {
     setProductData(product);
     setImage(product.image[0]);
   };
-  console.log(productData);
 
   useEffect(() => {
     fetchProductData();
