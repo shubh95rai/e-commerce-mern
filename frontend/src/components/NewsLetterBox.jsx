@@ -1,7 +1,6 @@
 const NewsLetterBox = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("Submitted");
   };
 
   return (
