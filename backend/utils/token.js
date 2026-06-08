@@ -25,4 +25,4 @@ const generateToken = (userId, res) => {
   return token;
 };
 
-export { cookieOptions, setTokenCookie, clearTokenCookie, generateToken };
+export { clearTokenCookie, generateToken };
