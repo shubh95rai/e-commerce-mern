@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
-import productRouter from "./routes/productRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 // App Config
 const app = express();
@@ -14,7 +14,11 @@ await connectDB();
 
 // Middlewares
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  // origin: process.env.CLIENT_URL,
+  origin: [
+    process.env.USER_CLIENT_URL,
+    process.env.ADMIN_CLIENT_URL,
+  ],
   credentials: true,
 };
 
@@ -28,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRouter);
-app.use("/api/product", productRouter);
+app.use("/api/admin", adminRouter);
 
 const PORT = process.env.PORT || 5000;
 

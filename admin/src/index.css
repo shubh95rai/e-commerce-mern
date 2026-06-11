@@ -1,11 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
 @import "tailwindcss";
 
 * {
   font-family: "Outfit", sans-serif;
 }
 
-.active{
-  background-color: #FFEBF5;
-  border-color: #C586A5;
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+}
+
+.active {
+  background-color: #ffebf5;
+  border-color: #c586a5;
 }
