@@ -26,9 +26,9 @@ adminRouter.post(
   ]),
   addProduct,
 );
-adminRouter.post("/single", adminAuth, singleProduct);
+adminRouter.post("/single", singleProduct);
 adminRouter.post("/remove", adminAuth, removeProduct);
-adminRouter.get("/list", adminAuth, listProducts);
+adminRouter.get("/list", listProducts);
 adminRouter.post("/login", adminLogin);
 adminRouter.post("/logout", adminLogout);
 adminRouter.get("/is-auth", adminAuth, isAdminAuth);

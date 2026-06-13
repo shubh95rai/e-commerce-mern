@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { ShopContext } from "../context/ShopContext";
+import { useEffect, useState } from "react";
+import { useShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/frontend_assets/assets";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
   const { products, currency, cartItems, updateQuantity, navigate } =
-    useContext(ShopContext);
+    useShopContext();
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -47,9 +47,9 @@ const Cart = () => {
               >
                 <div className="flex items-start gap-6">
                   <img
-                    src={product.image[0]}
+                    src={product.image[0]?.url}
                     alt="product-img"
-                    className="w-16 sm:w-20"
+                    className="w-16 sm:w-20 aspect-square object-cover"
                   />
                   <div>
                     <p className="text-xs sm:text-lg font-medium">

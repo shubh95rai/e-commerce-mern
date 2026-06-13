@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/frontend_assets/assets";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../admin/src/utils/axiosInstance";
 
 export const ShopContext = createContext();
 
@@ -11,6 +11,7 @@ const ShopContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
@@ -68,6 +69,25 @@ const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
+  const fetchProducts = async () => {
+    try {
+      const res = await axiosInstance.get("/admin/list");
+
+      setProducts(res.data.products);
+    } catch (error) {
+      const message =
+        error?.response?.data?.message || error.message || "Unknown error";
+
+      console.log("Error in fetchProducts:", message);
+
+      toast.error(message);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   const value = {
     products,
     currency,
@@ -86,4 +106,9 @@ const ShopContextProvider = ({ children }) => {
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
+
+export const useShopContext = () => {
+  return useContext(ShopContext);
+};
+
 export default ShopContextProvider;

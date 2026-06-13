@@ -1,11 +1,11 @@
-import { use, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import Title from "../components/Title";
-import { ShopContext } from "../context/ShopContext";
+import { useShopContext } from "../context/ShopContext";
 import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
-  const { products, search, showSearch } = useContext(ShopContext);
+  const { products, search, showSearch } = useShopContext();
   const [showFilter, setShowFilter] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -77,7 +77,7 @@ const Collection = () => {
   useEffect(() => {
     applyFilter();
     setSortBy("relevant");
-  }, [category, subCategory, search, showSearch]);
+  }, [category, subCategory, search, showSearch, products]);
 
   useEffect(() => {
     sortProducts();

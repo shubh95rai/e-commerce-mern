@@ -15,7 +15,7 @@ import DashboardLayout from "./components/DashboardLayout";
 const App = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
-      <ToastContainer autoClose={2000} position="bottom-right" />
+      <ToastContainer autoClose={2000} />
 
       <Routes>
         {/* Public Routes */}

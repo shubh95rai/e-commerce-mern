@@ -13,10 +13,18 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  image: {
-    type: Array,
-    required: true,
-  },
+  image: [
+    {
+      url: {
+        type: String,
+        required: true,
+      }, // cloudinary url of the image (used for displaying the image)
+      public_id: {
+        type: String,
+        required: true,
+      }, // cloudinary public_id of the image (used for deleting the image from cloudinary)
+    },
+  ],
   category: {
     type: String,
     required: true,
@@ -26,10 +34,10 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   sizes: {
-    type: Array,
+    type: [String],
     required: true,
   },
-  bestSeller: {
+  bestseller: {
     type: Boolean,
   },
   date: {

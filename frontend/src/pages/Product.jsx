@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
+import { useShopContext } from "../context/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart } = useShopContext();
   const [productData, setProductData] = useState({});
   const [image, setImage] = useState(null);
   const [size, setSize] = useState("");
@@ -15,7 +15,7 @@ const Product = () => {
     const product = products.find((item) => item._id === productId);
 
     setProductData(product);
-    setImage(product.image[0]);
+    setImage(product.image[0]?.url);
   };
 
   useEffect(() => {
@@ -32,11 +32,11 @@ const Product = () => {
             {productData?.image?.map((item, index) => (
               <img
                 key={index}
-                src={item}
+                src={item?.url}
                 alt="product-img"
                 className="w-[24%] sm:w-full sm:mb-3 shrink-0 cursor-pointer"
                 onClick={() => {
-                  setImage(item);
+                  setImage(item?.url);
                 }}
               />
             ))}

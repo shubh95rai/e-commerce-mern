@@ -13,6 +13,20 @@ const addProduct = async (req, res) => {
       bestseller,
     } = req.body;
 
+    if (
+      !name ||
+      !description ||
+      !price ||
+      !category ||
+      !subCategory ||
+      JSON.parse(sizes).length === 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "All mandatory fields are required ",
+      });
+    }
+
     const image1 = req?.files?.image1 && req.files.image1[0];
     const image2 = req?.files?.image2 && req.files.image2[0];
     const image3 = req?.files?.image3 && req.files.image3[0];
@@ -20,12 +34,23 @@ const addProduct = async (req, res) => {
 
     const images = [image1, image2, image3, image4].filter(Boolean);
 
+    if (images.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "At least one product image is required",
+      });
+    }
+
     let imagesUrl = await Promise.all(
       images.map(async (image) => {
         const uploadResponse = await cloudinary.uploader.upload(image.path, {
           folder: "e-commerce-mern-with-payment/products",
         });
-        return uploadResponse.secure_url;
+        // return uploadResponse.secure_url;
+        return {
+          url: uploadResponse.secure_url,
+          public_id: uploadResponse.public_id,
+        };
       }),
     );
 
@@ -37,7 +62,7 @@ const addProduct = async (req, res) => {
       subCategory,
       sizes: JSON.parse(sizes),
       bestseller: bestseller === "true" ? true : false,
-      images: imagesUrl,
+      image: imagesUrl,
       date: Date.now(),
     };
 
@@ -77,6 +102,19 @@ const listProducts = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   try {
+    const product = await Product.findById(req.body.id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    await Promise.all(
+      product.image.map((img) => cloudinary.uploader.destroy(img.public_id)),
+    );
+
     await Product.findByIdAndDelete(req.body.id);
 
     res.status(200).json({

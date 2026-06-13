@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { ShopContext } from "../context/ShopContext";
+import { useEffect, useState } from "react";
+import { useShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import Product from "../pages/Product";
 import ProductItem from "./ProductItem";
 
 const BestSeller = () => {
-  const { products } = useContext(ShopContext);
+  const { products } = useShopContext();
   const [bestSellers, setBestSellers] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,8 @@ const BestSeller = () => {
       <div className="text-center text-3xl py-8">
         <Title text1="BEST" text2="SELLERS" />
         <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis esse adipisci, qui eaque saepe voluptatum!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
+          esse adipisci, qui eaque saepe voluptatum!
         </p>
       </div>
 

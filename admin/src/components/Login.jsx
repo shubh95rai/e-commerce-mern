@@ -27,7 +27,6 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Enter your email address"
-              required
               className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none"
             />
           </div>
@@ -38,7 +37,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Enter your password"
-              required
               className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none"
             />
           </div>

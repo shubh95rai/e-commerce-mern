@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
+import { toast } from "react-toastify";
 
 const AdminContext = createContext();
 
@@ -8,6 +9,8 @@ const AdminContextProvider = ({ children }) => {
   const [isCheckingAdminAuth, setIsCheckingAdminAuth] = useState(true);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const currency = "$";
 
   const checkAdminAuth = async () => {
     setIsCheckingAdminAuth(true);
@@ -86,6 +89,7 @@ const AdminContextProvider = ({ children }) => {
     logout,
     isLoggingIn,
     isLoggingOut,
+    currency,
   };
   return (
     <AdminContext.Provider value={value}>{children}</AdminContext.Provider>

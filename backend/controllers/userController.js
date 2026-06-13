@@ -1,7 +1,11 @@
 import validator from "validator";
 import User from "../models/User.js";
 import bcryptjs from "bcryptjs";
-import { generateAdminToken, generateUserToken } from "../utils/token.js";
+import {
+  clearTokenCookie,
+  generateAdminToken,
+  generateUserToken,
+} from "../utils/token.js";
 
 const loginUser = async (req, res) => {
   try {
@@ -105,6 +109,24 @@ const registerUser = async (req, res) => {
   }
 };
 
+const logoutUser = async (req, res) => {
+  try {
+    clearTokenCookie(res, "userToken");
+
+    res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.log("Error in logoutUser controller:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
+
 const isUserAuth = (req, res) => {
   try {
     res.status(200).json({
@@ -121,4 +143,4 @@ const isUserAuth = (req, res) => {
   }
 };
 
-export { loginUser, registerUser, isUserAuth };
+export { loginUser, registerUser, isUserAuth, logoutUser };
