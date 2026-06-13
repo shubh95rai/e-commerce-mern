@@ -8,10 +8,10 @@ import UserContextProvider from "./context/UserContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <ShopContextProvider>
-      <UserContextProvider>
+    <UserContextProvider>
+      <ShopContextProvider>
         <App />
-      </UserContextProvider>
-    </ShopContextProvider>
+      </ShopContextProvider>
+    </UserContextProvider>
   </BrowserRouter>,
 );

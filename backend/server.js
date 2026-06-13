@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
+import cartRouter from "./routes/cartRoutes.js";
 
 // App Config
 const app = express();
@@ -15,10 +16,7 @@ await connectDB();
 // Middlewares
 const corsOptions = {
   // origin: process.env.CLIENT_URL,
-  origin: [
-    process.env.USER_CLIENT_URL,
-    process.env.ADMIN_CLIENT_URL,
-  ],
+  origin: [process.env.USER_CLIENT_URL, process.env.ADMIN_CLIENT_URL],
   credentials: true,
 };
 
@@ -33,6 +31,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/cart", cartRouter);
 
 const PORT = process.env.PORT || 5000;
 

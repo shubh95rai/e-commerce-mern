@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../admin/src/utils/axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
+import { useUserContext } from "./UserContext";
 
 export const ShopContext = createContext();
 
@@ -14,11 +15,16 @@ const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  const { isAuth } = useUserContext();
+
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Please select size");
       return;
     }
+
+    // Update cart UI immediately
+    const previousCart = structuredClone(cartItems);
     let newCartItems = structuredClone(cartItems);
 
     if (newCartItems[itemId]) {
@@ -34,6 +40,26 @@ const ShopContextProvider = ({ children }) => {
 
     setCartItems(newCartItems);
     toast.success("Product added to cart");
+
+    // Update cart in DB
+    try {
+      if (isAuth) {
+        await axiosInstance.post("/cart/add", {
+          itemId,
+          size,
+        });
+      }
+    } catch (error) {
+      // Revert UI if API fails
+      setCartItems(previousCart);
+
+      const message =
+        error?.response?.data?.message || error.message || "Unknown error";
+
+      console.log("Error in addToCart:", message);
+
+      toast.error(message);
+    }
   };
 
   const getCartCount = () => {
@@ -49,9 +75,31 @@ const ShopContextProvider = ({ children }) => {
   };
 
   const updateQuantity = async (itemId, size, quantity) => {
+    const previousCart = structuredClone(cartItems);
     let newCartItems = structuredClone(cartItems);
     newCartItems[itemId][size] = quantity;
     setCartItems(newCartItems);
+
+    // Update cart in DB
+    try {
+      if (isAuth) {
+        await axiosInstance.post("/cart/update", {
+          itemId,
+          size,
+          quantity,
+        });
+      }
+    } catch (error) {
+      // Revert UI if API fails
+      setCartItems(previousCart);
+
+      const message =
+        error?.response?.data?.message || error.message || "Unknown error";
+
+      console.log("Error in updateQuantity:", message);
+
+      toast.error(message);
+    }
   };
 
   const getCartAmount = () => {
@@ -84,9 +132,34 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
+  const getUserCart = async () => {
+    try {
+      if (isAuth) {
+        const res = await axiosInstance.get("/cart/get");
+
+        setCartItems(res.data.cartData);
+      }
+    } catch (error) {
+      const message =
+        error?.response?.data?.message || error.message || "Unknown error";
+
+      console.log("Error in getUserCart:", message);
+
+      toast.error(message);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (isAuth) {
+      getUserCart();
+    } else {
+      setCartItems({});
+    }
+  }, [isAuth]);
 
   const value = {
     products,
