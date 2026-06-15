@@ -39,7 +39,7 @@ const ShopContextProvider = ({ children }) => {
     }
 
     setCartItems(newCartItems);
-    toast.success("Product added to cart");
+    // toast.success("Product added to cart");
 
     // Update cart in DB
     try {
@@ -170,6 +170,7 @@ const ShopContextProvider = ({ children }) => {
     showSearch,
     setShowSearch,
     cartItems,
+    setCartItems,
     addToCart,
     getCartCount,
     updateQuantity,

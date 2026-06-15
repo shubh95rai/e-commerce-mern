@@ -73,7 +73,7 @@ const List = () => {
         ) : products.length === 0 ? (
           <div className="border rounded-md p-8 text-center">
             <p className="text-lg font-medium">No products yet</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 mt-2">
               Add your first product to get started.
             </p>
           </div>

@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 import cartRouter from "./routes/cartRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 // App Config
 const app = express();
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 const verifyToken = (cookieName, requiredRole = null) => {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     try {
       const token = req.cookies[cookieName];
 
@@ -19,6 +20,19 @@ const verifyToken = (cookieName, requiredRole = null) => {
           success: false,
           message: "Forbidden",
         });
+      }
+
+      if (requiredRole === "user") {
+        const user = await User.exists({
+          _id: decodedToken.userId,
+        });
+
+        if (!user) {
+          return res.status(401).json({
+            success: false,
+            message: "Unauthorized",
+          });
+        }
       }
 
       req.user = decodedToken;
