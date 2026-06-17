@@ -11,7 +11,7 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    <div className="sticky top-0 z-50 bg-white flex items-center justify-between py-5 font-medium">
       <Link to="/">
         <img src={assets.logo} alt="logo" className="w-36" />
       </Link>
@@ -58,8 +58,8 @@ const Navbar = () => {
 
           {/* Dropdown Menu */}
           {isAuth && (
-            <div className="group-hover:block hidden absolute right-0 pt-4 dropdown-menu">
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+            <div className="group-hover:block hidden absolute right-0 pt-4 dropdown-menu rounded">
+              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded shadow-md">
                 <p className="cursor-pointer hover:text-black">My Profile</p>
                 <p
                   onClick={() => {
@@ -98,7 +98,7 @@ const Navbar = () => {
 
       {/* Sidebar menu for small screens */}
       <div
-        className={`absolute top-0 bottom-0 right-0 overflow-hidden bg-white transition-all duration-300 ${
+        className={`fixed top-0 bottom-0 right-0 overflow-hidden bg-white transition-all duration-300 ${
           visible ? "w-full" : "w-0"
         }`}
       >
