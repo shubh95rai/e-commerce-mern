@@ -41,10 +41,6 @@ const productSchema = mongoose.Schema(
     bestseller: {
       type: Boolean,
     },
-    date: {
-      type: Date,
-      required: true,
-    },
   },
   {
     timestamps: true,

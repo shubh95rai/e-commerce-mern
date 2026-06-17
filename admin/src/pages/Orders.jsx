@@ -58,7 +58,7 @@ const Order = () => {
           <div className="border rounded-md p-12 text-center">
             <p className="text-lg font-medium">No orders yet</p>
             <p className="text-sm text-gray-500 mt-2">
-              Customer orders will appear here once they start placing them.
+              There are currently no orders.
             </p>
           </div>
         ) : (

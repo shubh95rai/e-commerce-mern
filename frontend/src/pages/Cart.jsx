@@ -33,8 +33,26 @@ const Cart = () => {
         <Title text1="YOUR" text2="CART" />
       </div>
 
+      {/* ----- Cart Items ----- */}
       <div>
-        {cartData.length > 0 &&
+        {cartData.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <img src={assets.cart_icon} alt="cart" className="w-8 opacity-50" />
+
+            <h2 className="mt-4 text-2xl font-medium">Your cart is empty</h2>
+
+            <p className="mt-2 text-gray-500">
+              Looks like you haven't added anything to your cart yet.
+            </p>
+
+            <button
+              onClick={() => navigate("/collection")}
+              className="mt-6 bg-black text-white px-6 py-3 text-sm"
+            >
+              CONTINUE SHOPPING
+            </button>
+          </div>
+        ) : (
           cartData.map((item, index) => {
             const product = products.find(
               (product) => product._id === item._id,
@@ -94,23 +112,27 @@ const Cart = () => {
                 />
               </div>
             );
-          })}
+          })
+        )}
       </div>
 
-      <div className="flex justify-end my-20">
-        <div className="w-full sm:w-112.5">
-          <CartTotal />
-          <div className="w-full text-end">
-            <button
-              onClick={() => navigate("/place-order")}
-              className="bg-black text-white text-sm my-8 px-8 py-3
+      {/* ----- Cart Total ----- */}
+      {cartData.length > 0 && (
+        <div className="flex justify-end my-20">
+          <div className="w-full sm:w-112.5">
+            <CartTotal />
+            <div className="w-full text-end">
+              <button
+                onClick={() => navigate("/place-order")}
+                className="bg-black text-white text-sm my-8 px-8 py-3
             "
-            >
-              PROCEED TO CHECKOUT
-            </button>
+              >
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
