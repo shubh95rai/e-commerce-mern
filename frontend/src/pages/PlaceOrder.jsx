@@ -6,6 +6,7 @@ import { useShopContext } from "../context/ShopContext";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance.js";
 import { Loader2 } from "lucide-react";
+import handleApiError from "../utils/handleApiError";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -65,7 +66,9 @@ const PlaceOrder = () => {
     for (const item in cartItems) {
       for (const size in cartItems[item]) {
         if (cartItems[item][size] > 0) {
-          const itemInfo = products.find((product) => product._id === item);
+          const itemInfo = structuredClone(
+            products.find((product) => product._id === item),
+          );
           if (itemInfo) {
             itemInfo.size = size;
             itemInfo.quantity = cartItems[item][size];
@@ -86,7 +89,7 @@ const PlaceOrder = () => {
 
       switch (method) {
         case "cod":
-          await axiosInstance.post("/order/place", orderData);
+          const res = await axiosInstance.post("/order/place", orderData);
 
           setCartItems({});
           navigate("/orders");
@@ -94,23 +97,21 @@ const PlaceOrder = () => {
           break;
 
         case "stripe":
-          await axiosInstance.post("/order/stripe", orderData);
-          break;
+          const stripeRes = await axiosInstance.post(
+            "/order/stripe",
+            orderData,
+          );
 
-        case "razorpay":
-          await axiosInstance.post("/order/razorpay", orderData);
+          const { session_url } = stripeRes.data;
+
+          window.location.href = session_url;
           break;
 
         default:
           break;
       }
     } catch (error) {
-      const message =
-        error?.response?.data?.message || error.message || "Unknown error";
-
-      console.log("Error in onSubmitHandler:", message);
-
-      toast.error(message);
+      handleApiError(error, "onSubmitHandler");
     } finally {
       setIsPlacingOrder(false);
     }
@@ -230,19 +231,7 @@ const PlaceOrder = () => {
                 className="h-5 mx-4"
               />
             </div>
-            <div
-              onClick={() => setMethod("razorpay")}
-              className="flex items-center gap-3 border py-2 px-3 cursor-pointer"
-            >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${method === "razorpay" ? "bg-green-400" : ""}`}
-              ></p>
-              <img
-                src={assets.razorpay_logo}
-                alt="stripe logo"
-                className="h-5 mx-4"
-              />
-            </div>
+
             <div
               onClick={() => setMethod("cod")}
               className="flex items-center gap-3 border py-2 px-3 cursor-pointer"

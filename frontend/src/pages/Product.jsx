@@ -7,7 +7,7 @@ import RelatedProducts from "../components/RelatedProducts";
 const Product = () => {
   const { productId } = useParams();
   const { products, currency, addToCart } = useShopContext();
-  const [productData, setProductData] = useState({});
+  const [productData, setProductData] = useState(null);
   const [image, setImage] = useState(null);
   const [size, setSize] = useState("");
 
@@ -15,7 +15,7 @@ const Product = () => {
     const product = products.find((item) => item._id === productId);
 
     setProductData(product);
-    setImage(product.image[0]?.url);
+    setImage(product?.image[0]?.url);
   };
 
   useEffect(() => {

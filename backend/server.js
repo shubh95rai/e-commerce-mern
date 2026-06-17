@@ -16,7 +16,6 @@ await connectDB();
 
 // Middlewares
 const corsOptions = {
-  // origin: process.env.CLIENT_URL,
   origin: [process.env.USER_CLIENT_URL, process.env.ADMIN_CLIENT_URL],
   credentials: true,
 };

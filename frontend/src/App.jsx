@@ -11,6 +11,7 @@ import Orders from "./pages/Orders";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
+import Verify from "./pages/Verify";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
@@ -31,6 +32,7 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/verify" element={<Verify />} />
         </Route>
 
         {/* Routes accessible to everyone (auth / no auth) */}

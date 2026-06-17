@@ -67,11 +67,11 @@ const List = () => {
 
         {/* ----- List Body ----- */}
         {isLoading ? (
-          <div className="flex justify-center py-10">
+          <div className="border rounded-md p-12 flex justify-center">
             <Loader2 className="animate-spin" />
           </div>
         ) : products.length === 0 ? (
-          <div className="border rounded-md p-8 text-center">
+          <div className="border rounded-md p-12 text-center">
             <p className="text-lg font-medium">No products yet</p>
             <p className="text-sm text-gray-500 mt-2">
               Add your first product to get started.
