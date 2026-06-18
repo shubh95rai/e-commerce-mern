@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 bg-white flex items-center justify-between py-5 font-medium">
       <Link to="/">
-        <img src={assets.logo} alt="logo" className="w-36" />
+        <img src={assets.logo} alt="logo" className="w-28 sm:w-36" />
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
@@ -43,7 +43,10 @@ const Navbar = () => {
           src={assets.search_icon}
           alt="search-icon"
           className="w-5 cursor-pointer"
-          onClick={() => setShowSearch(true)}
+          onClick={() => {
+            setShowSearch((prev) => !prev);
+            navigate("/collection");
+          }}
         />
 
         <div className="group relative">

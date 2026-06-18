@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div>
       <div className="text-2xl pt-8 text-center border-t">
-        <Title text1="ABOUT" text2="US" />
+        <Title text1="CONTACT" text2="US" />
       </div>
 
       <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28">

@@ -25,7 +25,7 @@ const SearchBar = () => {
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Search"
-          className="flex-1 outline-none bg-inherit text-sm"
+          className="flex-1 outline-none bg-inherit text-sm min-w-0"
         />
         <img src={assets.search_icon} alt="search" className="w-4" />
       </div>

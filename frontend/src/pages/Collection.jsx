@@ -89,7 +89,7 @@ const Collection = () => {
       <div className="min-w-60">
         <p
           onClick={() => setShowFilter(!showFilter)}
-          className="my-2 text-xl inline-flex items-center cursor-pointer gap-2"
+          className="my-2 md:text-xl inline-flex items-center cursor-pointer sm:cursor-default gap-3 border border-gray-400 md:border-0 px-4  py-2 md:p-0"
         >
           FILTERS
           <img
@@ -101,11 +101,11 @@ const Collection = () => {
 
         {/* Category Filter */}
         <div
-          className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} md:block`}
+          className={`border border-gray-300 pl-5 py-3 mt-6 bg-gray-50 ${showFilter ? "" : "hidden"} md:block`}
         >
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
-            <p className="flex gap-2">
+            <label className="flex gap-2 cursor-pointer">
               <input
                 className="w-3"
                 type="checkbox"
@@ -113,8 +113,8 @@ const Collection = () => {
                 onClick={toggleCategory}
               />{" "}
               Men
-            </p>
-            <p className="flex gap-2">
+            </label>
+            <label className="flex gap-2">
               <input
                 className="w-3"
                 type="checkbox"
@@ -122,8 +122,8 @@ const Collection = () => {
                 onClick={toggleCategory}
               />{" "}
               Women
-            </p>
-            <p className="flex gap-2">
+            </label>
+            <label className="flex gap-2">
               <input
                 className="w-3"
                 type="checkbox"
@@ -131,13 +131,13 @@ const Collection = () => {
                 onClick={toggleCategory}
               />{" "}
               Kids
-            </p>
+            </label>
           </div>
         </div>
 
         {/* SubCategory Filter */}
         <div
-          className={`border border-gray-300 pl-5 py-3 my-6 ${showFilter ? "" : "hidden"} md:block`}
+          className={`border border-gray-300 pl-5 py-3 my-6 bg-gray-50 ${showFilter ? "" : "hidden"} md:block`}
         >
           <p className="mb-3 text-sm font-medium">TYPE</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
@@ -174,14 +174,14 @@ const Collection = () => {
 
       {/* Right Side */}
       <div className="flex-1">
-        <div className="flex justify-between text-base sm:text-2xl mb-4">
+        <div className="flex justify-between items-center gap-2 text-base sm:text-2xl mb-4 ">
           <Title text1="ALL" text2="COLLECTIONS" />
 
           {/* Product Sort */}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border-2 border-gray-300 text-sm px-2"
+            className="border-2 border-gray-300 text-sm px-2 mb-3 h-10"
           >
             <option value="relevant">Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>

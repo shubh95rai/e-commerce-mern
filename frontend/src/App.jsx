@@ -15,11 +15,13 @@ import Verify from "./pages/Verify";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
       <ToastContainer autoClose={2000} />
+      <ScrollToTop />
       <Navbar />
       <SearchBar />
       <Routes>

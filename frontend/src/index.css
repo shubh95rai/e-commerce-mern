@@ -22,6 +22,11 @@ a.active hr {
   font-style: normal;
 }
 
+input[type="checkbox"] {
+  accent-color: black;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
