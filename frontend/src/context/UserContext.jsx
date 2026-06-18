@@ -8,8 +8,7 @@ const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ const UserContextProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    setIsLoggingIn(true);
+    setIsLoading(true);
 
     try {
       const res = await axiosInstance.post("/user/login", {
@@ -53,12 +52,12 @@ const UserContextProvider = ({ children }) => {
 
       toast.error(message);
     } finally {
-      setIsLoggingIn(false);
+      setIsLoading(false);
     }
   };
 
   const register = async (name, email, password) => {
-    setIsRegistering(true);
+    setIsLoading(true);
 
     try {
       const res = await axiosInstance.post("/user/register", {
@@ -78,7 +77,7 @@ const UserContextProvider = ({ children }) => {
 
       toast.error(message);
     } finally {
-      setIsRegistering(false);
+      setIsLoading(false);
     }
   };
 
@@ -112,9 +111,8 @@ const UserContextProvider = ({ children }) => {
     isAuth,
     setIsAuth,
     isCheckingAuth,
-    isLoggingIn,
+    isLoading,
     isLoggingOut,
-    isRegistering,
     login,
     register,
     logout,

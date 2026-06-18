@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
+import { Loader2 } from "lucide-react";
 
 const AUTH_MODE = {
   LOGIN: "login",
@@ -8,12 +9,12 @@ const AUTH_MODE = {
 
 const Login = () => {
   const [currentState, setCurrentState] = useState(AUTH_MODE.LOGIN);
-  
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, register, isLoggingIn, isRegistering } = useUserContext();
+  const { login, register, isLoading } = useUserContext();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -90,8 +91,14 @@ const Login = () => {
           </p>
         )}
       </div>
-      <button className="bg-black text-white px-8 py-2 mt-4 font-light">
-        {currentState === AUTH_MODE.SIGNUP ? "Sign Up" : "Login"}
+      <button className="bg-black text-white w-32 h-11 mt-4 font-light">
+        {isLoading ? (
+          <Loader2 className="animate-spin mx-auto" />
+        ) : currentState === AUTH_MODE.SIGNUP ? (
+          "Sign Up"
+        ) : (
+          "Login"
+        )}
       </button>
     </form>
   );

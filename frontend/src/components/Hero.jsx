@@ -10,7 +10,7 @@ const Hero = () => {
             <p className="w-8 md:w-11 h-0.5 bg-[#414141] "></p>
             <p className="font-medium text-sm md:text-base">STYLE REDEFINED</p>
           </div>
-          <h1 className="text-2xl sm:py-3 xl:text-5xl leading-relaxed prata-regular">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:py-3 xl:text-5xl leading-relaxed prata-regular">
             OWN EVERY LOOK
           </h1>
           <div className="flex items-center gap-2 justify-end">

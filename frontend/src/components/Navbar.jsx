@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useShopContext } from "../context/ShopContext";
 import { useUserContext } from "../context/UserContext";
 
@@ -9,6 +9,20 @@ const Navbar = () => {
   const { isAuth, logout, navigate } = useUserContext();
 
   const [visible, setVisible] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="sticky top-0 z-50 bg-white flex items-center justify-between py-5 font-medium">
@@ -49,10 +63,10 @@ const Navbar = () => {
           }}
         />
 
-        <div className="group relative">
+        <div className="group relative" ref={profileRef}>
           <img
             onClick={() => {
-              isAuth ? null : navigate("/login");
+              isAuth ? setShowProfileMenu((prev) => !prev) : navigate("/login");
             }}
             src={assets.profile_icon}
             alt="profile-icon"
@@ -60,19 +74,26 @@ const Navbar = () => {
           />
 
           {/* Dropdown Menu */}
-          {isAuth && (
-            <div className="group-hover:block hidden absolute right-0 pt-4 dropdown-menu rounded">
+          {isAuth && showProfileMenu && (
+            <div className="absolute right-0 pt-4 rounded z-50">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded shadow-md">
-                <p className="cursor-pointer hover:text-black">My Profile</p>
+                {/* <p className="cursor-pointer hover:text-black">My Profile</p> */}
                 <p
                   onClick={() => {
                     navigate("/orders");
+                    setShowProfileMenu(false);
                   }}
                   className="cursor-pointer hover:text-black"
                 >
                   Orders
                 </p>
-                <p onClick={logout} className="cursor-pointer hover:text-black">
+                <p
+                  onClick={() => {
+                    logout();
+                    setShowProfileMenu(false);
+                  }}
+                  className="cursor-pointer hover:text-black"
+                >
                   Logout
                 </p>
               </div>
