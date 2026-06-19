@@ -6,7 +6,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <hr />
+      {/* <hr /> */}
 
       <div className="flex flex-1">
         <Sidebar />

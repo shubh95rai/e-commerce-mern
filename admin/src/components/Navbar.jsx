@@ -9,7 +9,7 @@ const Navbar = () => {
   const { logout, isLoggingOut } = useAdminContext();
 
   return (
-    <div className="flex items-center justify-between py-2 px-[4%]">
+    <div className="flex items-center justify-between py-2 px-[4%] sticky top-0 z-50 bg-gray-50 border-b">
       <img src={assets.logo} alt="logo" className="w-[max(10%,80px)]" />
       <button
         onClick={logout}
