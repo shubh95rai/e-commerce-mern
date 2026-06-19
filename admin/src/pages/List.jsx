@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import { useAdminContext } from "../context/AdminContext";
 import { Loader2 } from "lucide-react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const List = () => {
   const [products, setProducts] = useState([]);

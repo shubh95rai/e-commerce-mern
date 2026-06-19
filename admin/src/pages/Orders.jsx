@@ -1,7 +1,7 @@
 import axiosInstance from "../utils/axiosInstance.js";
 import { useEffect } from "react";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import handleApiError from "../utils/handleApiError.js";
 import { assets } from "../assets/admin_assets/assets.js";
 import { useAdminContext } from "../context/AdminContext.jsx";

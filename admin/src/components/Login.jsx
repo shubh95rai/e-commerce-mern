@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import { useAdminContext } from "../context/AdminContext";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 
 const Login = () => {

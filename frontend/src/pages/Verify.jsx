@@ -3,7 +3,7 @@ import { useShopContext } from "../context/ShopContext.jsx";
 import { useEffect } from "react";
 import handleApiError from "../utils/handleApiError.js";
 import axiosInstance from "../utils/axiosInstance.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const Verify = () => {
   const { navigate, setCartItems } = useShopContext();

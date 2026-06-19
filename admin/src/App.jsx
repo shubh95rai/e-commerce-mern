@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { use, useContext, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 import { useAdminContext } from "./context/AdminContext";
 import { Loader } from "lucide-react";
 
@@ -15,7 +15,7 @@ import DashboardLayout from "./components/DashboardLayout";
 const App = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
-      <ToastContainer autoClose={2000} />
+      <Toaster />
 
       <Routes>
         {/* Public Routes */}

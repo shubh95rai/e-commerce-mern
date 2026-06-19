@@ -12,16 +12,17 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 import Verify from "./pages/Verify";
-import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-      <ToastContainer autoClose={2000} />
+      <Toaster />
       <ScrollToTop />
+
       <Navbar />
       <SearchBar />
       <Routes>

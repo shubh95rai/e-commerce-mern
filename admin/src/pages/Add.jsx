@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { assets } from "../assets/admin_assets/assets";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import axiosInstance from "../utils/axiosInstance";
 import { Loader2 } from "lucide-react";
 import ImageUpload from "../components/ImageUpload";

@@ -30,7 +30,7 @@ const Navbar = () => {
         <img src={assets.logo} alt="logo" className="w-28 sm:w-36" />
       </Link>
 
-      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+      <ul className="hidden lg:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1">
           <p>HOME</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
@@ -53,6 +53,17 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
+        {/* Admin button  */}
+        <a
+          href="https://e-commerce-mern-admin-tawny.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs border border-gray-400 px-3 py-1 rounded-full hover:bg-black hover:text-white transition-all"
+        >
+          Admin
+        </a>
+
+        {/* Search icon */}
         <img
           src={assets.search_icon}
           alt="search-icon"
@@ -63,6 +74,7 @@ const Navbar = () => {
           }}
         />
 
+        {/* Profile icon */}
         <div className="group relative" ref={profileRef}>
           <img
             onClick={() => {
@@ -101,6 +113,7 @@ const Navbar = () => {
           )}
         </div>
 
+        {/* Cart icon */}
         <Link to="/cart" className="relative">
           <img
             src={assets.cart_icon}
@@ -112,11 +125,12 @@ const Navbar = () => {
           </p>
         </Link>
 
+        {/* Menu icon for small screens */}
         <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
           alt="menu-icon"
-          className="w-5 cursor-pointer sm:hidden"
+          className="w-5 cursor-pointer lg:hidden"
         />
       </div>
 
@@ -156,6 +170,16 @@ const Navbar = () => {
           <NavLink to="/contact" className="py-2 pl-6 border-b border-gray-400">
             CONTACT
           </NavLink>
+
+          {/* Admin link in mobile sidebar */}
+          <a
+            href="https://e-commerce-mern-admin-tawny.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-2 pl-6 border-b border-gray-400 text-gray-600"
+          >
+            ADMIN
+          </a>
         </div>
       </div>
     </div>

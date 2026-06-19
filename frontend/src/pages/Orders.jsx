@@ -1,6 +1,6 @@
 import { useShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance.js";
 import { Loader, Loader2 } from "lucide-react";

@@ -3,7 +3,7 @@ import { assets } from "../assets/frontend_assets/assets";
 import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 import { useShopContext } from "../context/ShopContext";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import axiosInstance from "../utils/axiosInstance.js";
 import { Loader2 } from "lucide-react";
 import handleApiError from "../utils/handleApiError";

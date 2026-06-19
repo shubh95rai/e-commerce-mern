@@ -2,7 +2,7 @@ import { useState } from "react";
 import { assets } from "../assets/admin_assets/assets";
 import { useAdminContext } from "../context/AdminContext";
 import axiosInstance from "../utils/axiosInstance";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 
 const Navbar = () => {

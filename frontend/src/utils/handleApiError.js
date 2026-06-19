@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const handleApiError = (error, functionName) => {
   const message =
