@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className="flex items-center gap-6">
         {/* Admin button  */}
         <a
-          href="https://e-commerce-mern-admin-tawny.vercel.app/"
+          href={import.meta.env.VITE_ADMIN_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs border border-gray-400 px-3 py-1 rounded-full hover:bg-black hover:text-white transition-all"
